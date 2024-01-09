@@ -29,4 +29,9 @@ def create_sorted_file(dir_name, new_file_name, reload_file = True):
 
 
 if __name__ == '__main__':
-    print(create_sorted_file('files/', 'new_file3.txt'))
+    dir_name = 'files/'
+    new_file_name = 'new_file.txt'
+    create_sorted_file(dir_name, new_file_name)
+    with open(new_file_name, encoding='utf-8') as f:
+        for line in f.readlines():
+            print(line, end='')
