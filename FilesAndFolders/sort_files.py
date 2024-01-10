@@ -1,37 +1,37 @@
 import os
 
-def remove_file(file_name):
-    if os.path.exists(file_name):
-        os.remove(file_name)
+def get_sorted_file_list(dir_name):
+    files = os.listdir(dir_name)
+    sorted_files = {}
+    for file in files:
+        file_path = os.path.join(dir_name, file)
+        if not os.path.isdir(file_path):
+            sorted_files[file] = os.path.getsize(file_path)
+    return dict(sorted(sorted_files.items(), key=lambda item: item[1]))
 
-def create_sorted_file(dir_name, new_file_name, reload_file = True):
-    if reload_file:
-        remove_file(new_file_name)
+def create_sorted_file(dir_name, sorted_file_name, rewrite_sorted_file = True):
+    if rewrite_sorted_file:
+        open_mode = 'w'
+    else: 
+        open_mode = 'a'
     
-    list_of_files = os.listdir(dir_name)
-    new_list = []
-    
+    list_of_files = list(get_sorted_file_list(dir_name).keys())
+    write_list = []
     for file in list_of_files:
-        if not os.path.isdir(os.path.join(dir_name, file)):
-            with open(os.path.join(dir_name, file), encoding='utf-8') as f:
-                file_len = len(f.readlines())
-                new_list.append({'file': file, 'len': file_len})
-    files = sorted(new_list, key=lambda x: x['len'])
-    with open(new_file_name, encoding='utf-8', mode='a') as wf:
-        write_list = []
-        for file in files:
-            write_list += [file['file'] + '\n', str(file['len']) + '\n']
-            with open(os.path.join(dir_name, file['file']), encoding='utf-8') as rf:
-                write_list += rf.readlines()
-                write_list += ['\n']
+        with open(os.path.join(dir_name, file), encoding='utf-8') as f:
+            lines = f.readlines()
+            write_list += [file + '\n', str(len(lines)) + '\n']
+            write_list += lines
+            write_list += ['\n']
+    with open(sorted_file_name, encoding='utf-8', mode=open_mode) as wf:
         wf.writelines(write_list)
         
 
 
 if __name__ == '__main__':
     dir_name = 'files/'
-    new_file_name = 'new_file.txt'
-    create_sorted_file(dir_name, new_file_name)
-    with open(new_file_name, encoding='utf-8') as f:
+    sorted_file_name = 'new_file.txt'
+    create_sorted_file(dir_name, sorted_file_name)
+    with open(sorted_file_name, encoding='utf-8') as f:
         for line in f.readlines():
             print(line, end='')
