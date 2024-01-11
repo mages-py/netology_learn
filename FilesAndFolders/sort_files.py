@@ -15,8 +15,7 @@ def create_sorted_file(dir_name, sorted_file_name, rewrite_sorted_file = True):
     write_list = []
     
     for file, lines in list_of_files.items():
-        with open(os.path.join(dir_name, file), encoding='utf-8') as f:
-            write_list += [file + '\n', str(len(lines)) + '\n'] + lines + ['\n']
+        write_list += [file + '\n', str(len(lines)) + '\n'] + lines + ['\n']
             
     mode = 'w' if rewrite_sorted_file else 'a'
     with open(sorted_file_name, encoding='utf-8', mode=mode) as wf:
