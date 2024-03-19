@@ -1,6 +1,7 @@
 import psycopg2 as pg
 from config import SERVER, USER, PASSWORD, DATABASE, PORT
 
+
 def connect():
     conn = pg.connect(database=DATABASE, user=USER, password=PASSWORD, host=SERVER, port=PORT)
     return conn
@@ -9,12 +10,15 @@ def connect():
 def close(conn):
         conn.close()
 
-def _delete_table(table_name):
+
+def _delete_table(table_name: str):
     conn = connect()
-    cur = conn.cursor()
-    cur.execute("DROP TABLE IF EXISTS " + table_name)
-    conn.commit()
-    close(conn)
+    with conn.cursor() as cur:
+        cur.execute("DROP TABLE IF EXISTS " + table_name)
+    try:
+        conn.commit()
+    finally:
+        conn.close()
 
 
 def create_tables():
@@ -22,8 +26,7 @@ def create_tables():
     _delete_table('clients')
     
     conn = connect()
-    cur = conn.cursor()
-    try:
+    with conn.cursor() as cur:
         cur.execute("""
             CREATE TABLE IF NOT EXISTS clients (
                 id SERIAL PRIMARY KEY,
@@ -40,12 +43,9 @@ def create_tables():
             """)
         
         cur.execute("ALTER TABLE phones ADD FOREIGN KEY (client_id) REFERENCES clients(id);")
+    try:
         conn.commit()
-    except Exception as e:
-        print(e)
-        conn.rollback()
     finally:
-        cur.close()
         conn.close()
 
 

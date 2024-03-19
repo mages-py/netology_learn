@@ -1,2 +1,3 @@
 crm/env/
 crm/config.py
+crm/__*__/
