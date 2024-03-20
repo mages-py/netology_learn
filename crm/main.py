@@ -3,14 +3,14 @@ from db_client import add_client, find_client, add_phones, del_phones, flush_db,
 
 
 EXEC_LIST = [
-    {'func_name': create_tables, 'title': 'Создать структуру БД'},
-    {'func_name': flush_db, 'title': 'Заполнить базу данными'},
-    {'func_name': add_client,  'title': 'Добавить клиента'},
+    {'func_name': create_tables, 'title': 'Создание структуры БД'},
+    {'func_name': flush_db, 'title': 'Заполнение базы данными'},
+    {'func_name': add_client,  'title': 'Создание клиента'},
     {'func_name': find_client,  'title': 'Поиск клиента'},
     {'func_name': change_client,  'title': 'Изменение данных клиента'},
     {'func_name': delete_client,  'title': 'Удаление клиента'},
-    {'func_name': add_phones,  'title': 'Внести номер телефона в БД для клиента'},
-    {'func_name': del_phones,  'title': 'Удалить номер/номера телефона для клиента'},
+    {'func_name': add_phones,  'title': 'Добавление телефонов для клиента'},
+    {'func_name': del_phones,  'title': 'Удаление телефонов для клиента'},
 ]
 
 
