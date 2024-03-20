@@ -1,10 +1,10 @@
 from db_utils import create_tables
-from db_client import add_client, find_client, add_phones, del_phones, flush_db, delete_client, change_client
+from db_client import add_client, find_client, add_phones, del_phones, fill_db, delete_client, change_client
 
 
 EXEC_LIST = [
     {'func_name': create_tables, 'title': 'Создание структуры БД'},
-    {'func_name': flush_db, 'title': 'Заполнение базы данными'},
+    {'func_name': fill_db, 'title': 'Заполнение базы данными'},
     {'func_name': add_client,  'title': 'Создание клиента'},
     {'func_name': find_client,  'title': 'Поиск клиента'},
     {'func_name': change_client,  'title': 'Изменение данных клиента'},

@@ -14,7 +14,7 @@ LIST_FIELDS = [
 ]
 
 
-def flush_db():
+def fill_db():
     clients = [
         {'first_name': 'Иван', 'last_name': 'Иванов', 'email': 'ivanov@mail.ru',
             'phones': '+7 (999) 999-99-99, +7 (995) 100-99-88'},
