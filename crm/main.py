@@ -21,13 +21,20 @@ def main():
         for key, func in enumerate(EXEC_LIST, start=1):
             print(f'{key}. {func["title"]}')
         id = int(input('Введите номер действия: ')) - 1
-        if id < len(EXEC_LIST):
-            EXEC_LIST[id]['func_name']()
-
-        if input('Для продолжения нажмите Enter: ') == '':
-            continue
+        if 0 <= id < len(EXEC_LIST):
+            try:
+                EXEC_LIST[id]['func_name']()
+                if input('Для продолжения нажмите Enter: ') == '':
+                    continue
+                else:
+                    break                           
+            except Exception as e:
+                print(e)
+                continue_execution = False
         else:
             continue_execution = False
+                                
+        
 
 
 if __name__ == '__main__':

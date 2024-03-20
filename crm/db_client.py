@@ -46,9 +46,9 @@ def get_client_id(list_exec):
             value = input(LIST_FIELDS[id]['console_text']).strip()
             clients = _get_client(LIST_FIELDS[id]['field'], value)
             if clients:
-                print('id', 'Имя', 'Фамилия')
+                print('id', 'Имя', 'Фамилия', sep='\t')
                 for client in clients:
-                    print(*client[:3])
+                    print(*client[:3], sep='\t')
                 client_id = int(input('Введите id клиента: '))
             else:
                 print('Клиент не найден')
@@ -120,10 +120,10 @@ def find_client():
     clients = _get_client(LIST_FIELDS[id]['field'], value)
     if clients:
         print('Найденные клиенты:')
-        print('id', 'Имя', 'Фамилия', 'E-mail', 'Номера телефонов')
+        print('id', 'Имя', 'Фамилия', 'E-mail', 'Номера телефонов', sep='\t')
         for client in clients:
             phones = [phone[1] for phone in crud.get_phones(client[0])]
-            print(*client, ', '.join(phones) if phones else '')
+            print(*client, ', '.join(phones) if phones else '', sep='\t')
     else:
         print('Клиентов не найдено')
 
