@@ -1,3 +1,4 @@
-crm/env/
-crm/config.py
-crm/__*__/
+**/env/
+**/.venv/
+**/config.py
+**/__*__/
