@@ -1,5 +1,5 @@
 from sqlalchemy import DateTime, String, Integer, DECIMAL, Column, ForeignKey
-from sqlalchemy.orm import mapped_column, relationship
+from sqlalchemy.orm import relationship
 from includes.db import Base
 
 
@@ -12,6 +12,7 @@ class Book(Base):
     __tablename__ = 'books'
     title = Column(String(100))
     id_publisher = Column(Integer, ForeignKey('publishers.id'))
+    
     publisher = relationship(Publisher, backref='books')
 
 
@@ -24,7 +25,7 @@ class Stock(Base):
     __tablename__ = 'stocks'
     id_book = Column(Integer, ForeignKey('books.id'))
     id_shop = Column(Integer, ForeignKey('shops.id'))
-    count = mapped_column(Integer)
+    count = Column(Integer)
     
     books = relationship(Book, backref='stocks')
     shops = relationship(Shop, backref='stocks')
@@ -35,4 +36,5 @@ class Sale(Base):
     date_sale = Column(DateTime)
     id_stock = Column(Integer, ForeignKey('stocks.id'))
     count = Column(Integer)
+    
     stocks = relationship(Stock, backref='sales')
