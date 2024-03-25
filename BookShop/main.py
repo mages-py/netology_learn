@@ -1,7 +1,7 @@
 import json
 from prettytable import PrettyTable
 from models import Publisher, Book, Shop, Stock, Sale
-from includes.db import create_db, destroy_db, Session
+from includes.db import Session
 
 MODELS = {
     'publisher': Publisher,
@@ -20,7 +20,7 @@ def insert_data_from_json():
     try:
         for row in data:
             model = MODELS[row['model']]
-            session.add(model(**row['fields']))
+            session.add(model(id=row['pk'], **row['fields']))
             session.commit()
     finally:
         session.close()
