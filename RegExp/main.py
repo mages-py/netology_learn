@@ -8,9 +8,16 @@ def formate_phone(phone):
         r'(8|\+7)\D?\(?(\d+)\)?\D?(\d+)\D?(\d+)\D?(\d+)\D?\(?[а-я. ]*(\d+)')
     res = pattern.search(phone)
     if res:
-        dop_phone = res.group(5) + res.group(6) if len(res.group(5)
-                                                       ) == 1 else res.group(5) + ' доб.' + res.group(6)
-        return '+7(' + res.group(2) + ')' + res.group(3) + '-' + res.group(4) + '-' + dop_phone
+        phone = res.group(2) + res.group(3) + res.group(4) + res.group(5) + res.group(6)
+        main_phone = '+7(' + phone[:3] + ') ' + phone[3:6] + '-' + phone[6:8] + '-' + phone[8:10]
+        # dop_phone = res.group(5) + res.group(6) if len(res.group(5)
+        #                                                ) == 1 else res.group(5) + ' доб.' + res.group(6)
+        # return '+7(' + res.group(2) + ')' + res.group(3) + '-' + res.group(4) + '-' + dop_phone
+        
+        if len(phone) == 10:
+            return main_phone
+        else:
+            return main_phone + ' доб.' + phone[10:]
 
 
 # читаем адресную книгу в формате CSV в список contacts_list
@@ -52,6 +59,7 @@ def normalize_phonebook():
 
 
 if __name__ == "__main__":
+    # print(formate_phone('+7 (495) 777-45-78 доб 4512'))
     contacts_list = normalize_phonebook()
     with open("assets/phonebook.csv", "w", encoding="utf-8", newline='') as f:
         datawriter = csv.writer(f, delimiter=',')
