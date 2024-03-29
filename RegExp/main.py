@@ -10,9 +10,6 @@ def formate_phone(phone):
     if res:
         phone = res.group(2) + res.group(3) + res.group(4) + res.group(5) + res.group(6)
         main_phone = '+7(' + phone[:3] + ') ' + phone[3:6] + '-' + phone[6:8] + '-' + phone[8:10]
-        # dop_phone = res.group(5) + res.group(6) if len(res.group(5)
-        #                                                ) == 1 else res.group(5) + ' доб.' + res.group(6)
-        # return '+7(' + res.group(2) + ')' + res.group(3) + '-' + res.group(4) + '-' + dop_phone
         
         if len(phone) == 10:
             return main_phone
