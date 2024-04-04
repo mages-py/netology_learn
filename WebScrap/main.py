@@ -82,14 +82,15 @@ def save_jobs_to_json(qty_pages=1, salary_in_usd=False):
             if job:
                 jobs.append(job)
     if jobs:    
-        file = f'jobs_{"USD" if salary_in_usd else "RUR"}.json'
+        file = f'jobs_{"USD" if salary_in_usd else "ALL"}.json'
         with open(file=file, mode='w', encoding='utf-8') as f:
             json.dump(jobs, f, ensure_ascii=False, indent=4)
+        print(f'Найдено вакансий и сохранено: {len(jobs)}')
     else:
         print('Не найдено подходящих вакансий')
                 
 
 
 if __name__ == '__main__':
-    # save_jobs_to_json(qty_pages=5)
-    save_jobs_to_json(qty_pages=15, salary_in_usd=True)
+    save_jobs_to_json(qty_pages=5)
+    # save_jobs_to_json(qty_pages=15, salary_in_usd=True)
