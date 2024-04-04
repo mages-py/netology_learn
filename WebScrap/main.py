@@ -63,7 +63,7 @@ def get_job_information(link, salary_in_usd=False):
     }
 
 
-def get_job_links(qty_pages=1):
+def _get_job_links(qty_pages=1):
     ua = UserAgent()
     for i in range(qty_pages):
         url = f'https://spb.hh.ru/search/vacancy?text=python&area=1&area=2&page={i}'
@@ -75,7 +75,7 @@ def get_job_links(qty_pages=1):
 
 def save_jobs_to_json(qty_pages=1, salary_in_usd=False):
     jobs = []
-    for id, link in enumerate(get_job_links(qty_pages=qty_pages)):
+    for id, link in enumerate(_get_job_links(qty_pages=qty_pages)):
         if link:
             # print(id, link)
             job = get_job_information(link, salary_in_usd=salary_in_usd)
