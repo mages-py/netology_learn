@@ -3,7 +3,6 @@ class FlatIterator:
     def __init__(self, list_of_list):
         self.list_items = list_of_list
 
-
     def __iter__(self):
         self.list_len = len(self.list_items)
         self.list_index = 0
@@ -18,8 +17,8 @@ class FlatIterator:
                 raise StopIteration
         self.item_index += 1
         return self.list_items[self.list_index][self.item_index]
- 
- 
+
+
 def test_1():
 
     list_of_lists_1 = [
@@ -40,12 +39,4 @@ def test_1():
 
 
 if __name__ == '__main__':
-    # test_1()
-    list_of_lists_1 = [
-        ['a', 'b', 'c'],
-        ['d', 'e', 'f', 'h', False],
-        [1, 2, None]
-    ]
-
-    for item in FlatIterator(list_of_lists_1):
-        print(item)
+    test_1()
