@@ -12,6 +12,11 @@ class Command(BaseCommand):
         with open('phones.csv', 'r') as file:
             phones = list(csv.DictReader(file, delimiter=';'))
 
-        for phone in phones:
-            # TODO: Добавьте сохранение модели
-            pass
+        try:
+            for phone in phones:
+                new_phone = Phone.objects.create(**phone)
+                print(f'Create a new phone. ID: {new_phone.id}')
+            print('Done')
+        except Exception as e: 
+            print(f'Error: {e}')
+                
