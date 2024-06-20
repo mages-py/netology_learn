@@ -76,9 +76,11 @@ WSGI_APPLICATION = 'website.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'netology_m2m_relations',
-        'HOST': '127.0.0.1',
+        'NAME': 'school_db',
+        'HOST': '185.221.213.82',
         'PORT': '5432',
+        'USER': 'postgres',
+        'PASSWORD': 'GhjcnjNfr08*',
     }
 }
 
