@@ -81,11 +81,11 @@ WSGI_APPLICATION = 'smart_home.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'api_1',
-        'HOST': 'localhost',
+        'NAME': 'api_2',
+        'HOST': '185.221.213.82',
         'PORT': '5432',
         'USER': 'postgres',
-        'PASSWORD': 'Nfr08*',
+        'PASSWORD': 'GhjcnjNfr08*',
     }
 }
 

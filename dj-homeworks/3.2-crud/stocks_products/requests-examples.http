@@ -13,6 +13,18 @@ Content-Type: application/json
 
 ###
 
+# создание продукта
+POST {{baseUrl}}/products/
+Content-Type: application/json
+
+{
+  "title": "Баклажан",
+  "description": "Лучшие баклажаны на рынке"
+}
+
+###
+
+
 # получение продуктов
 GET {{baseUrl}}/products/
 Content-Type: application/json
@@ -20,7 +32,7 @@ Content-Type: application/json
 ###
 
 # обновление продукта
-PATCH {{baseUrl}}/products/1/
+PATCH {{baseUrl}}/products/3/
 Content-Type: application/json
 
 {
@@ -30,7 +42,7 @@ Content-Type: application/json
 ###
 
 # удаление продукта
-DELETE {{baseUrl}}/products/1/
+DELETE {{baseUrl}}/products/3/
 Content-Type: application/json
 
 ###
@@ -54,9 +66,9 @@ Content-Type: application/json
       "price": 120.50
     },
     {
-      "product": 3,
-      "quantity": 100,
-      "price": 180
+      "product": 4,
+      "quantity": 150,
+      "price": 150
     }
   ]
 }
@@ -64,20 +76,20 @@ Content-Type: application/json
 ###
 
 # обновляем записи на складе
-PATCH {{baseUrl}}/stocks/4/
+PATCH {{baseUrl}}/stocks/2/
 Content-Type: application/json
 
 {
   "positions": [
     {
       "product": 2,
-      "quantity": 100,
+      "quantity": 150,
       "price": 130.80
     },
     {
-      "product": 3,
-      "quantity": 243,
-      "price": 145
+      "product": 4,
+      "quantity": 250,
+      "price": 150
     }
   ]
 }
